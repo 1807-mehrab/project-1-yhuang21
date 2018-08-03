@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>User lobby</title>
+	</head>
+
+	<body>
+        <h1>Ryan's Hotel</h1>
+		<h3>User Dashboard</h3>
+        <button type="button" onclick="loadUserProfile()">User Profile</button>
+        <div id="profile"></div>
+        <br>
+        <form action="Booking" method="POST">
+                Reservation:<br>
+                Room types:
+                <select name="room_type">
+                        <option value="double beds">Double Beds</option>
+                        <option value="king">King</option>
+                        <option value="suite">Suite</option>
+                        <option value="presidential suite">Presidential Suite</option>
+                </select>
+                <select name="limits">
+                        <option value="non-smoking">Non-smoking</option>
+                        <option value="smoking">smoking</option>
+                </select>
+                <br>
+                Check in date:<br>
+                Month (mm):
+                <input type="text" name="month" value="">
+                Day (dd):
+                <input type="text" name="day" value="">
+                Year (yyyy):
+                <input type="text" name="year" value="">
+                <br>
+                Number of nights:
+                <input type="text" name="num_nights" value="">
+                <br>
+                First Name:
+                <input type="text" name="first_name" value="">
+                Last Name:
+                <input type="text" name="last_name" value="">
+                <br>
+				<input type="submit" value="Book" />
+		</form>
+        <button type="button" onclick="logoutSession()">Logout</button>
+        
+    </body>
+    <script src="servletRequests.js?forceUpdate"></script>
+    <script>
+        function loadUserProfile() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if (this. readyState==4){
+                    if(this.status==200){
+                        document.getElementById("profile").innerHTML=xhr.responseText;
+                    }else{
+                        console.log("error");
+                    }
+                }
+		    };
+            xhr.open("GET", '/hotel_reservation/UserViewProfile');
+            xhr.send();
+        }
+    </script>
+</html>

@@ -1,0 +1,58 @@
+table name: rooms
+field1: (INTEGER) room_number, (mapped by floor plan) (primary key)
+field2: (INTEGER) room_type_id,   (foreign key to field type_id in table: room_types)
+field3: (INTEGER) occupied,  (1 for yes/0 for no) (depends on if status_id in current_reservations is 1,2 or 3)
+
+table name: room_types
+field1: (INTEGER)type_id, (primary key)
+field2: (varchar2)room_type,	(king, queen, double queen, suite, presendential suite)
+field3:	(varchar2)limits, (smoking, non-smoking)
+field4: (Decimal)rate,
+field5: (INTEGER)total_rooms,
+
+
+table name: room_x_this_week_availability
+field 1:(INTEGER)day (primary key, Range 1-7)
+field 2:(INTEGER)availability, (range 0-1)(1 for yes/0 for no) (depends on the day of the check_in_date and number_of_nights from the current_reservation where type_id matches)
+
+table name: room_x_next_week_availability
+field 1:(INTEGER)day (Range 1-7)
+field 2:(INTEGER)availability, (range 0-1)(1 for yes/0 for no) (depends on the day of the check_in_date and number_of_nights from the current_reservation where type_id matches)
+
+table name:current_reservations
+field1: (number) reservation_id(primary_key, math algo unique)
+field2: (varchar2)customer_firstName
+field3: (varchar2)customer_lastName
+field5: (INTEGER)room_type_id (foreign key to field type_id in table: room_types)
+field6: (date)check_in_date
+field7: (INTEGER)number_of_nights
+field8: (INTEGER)status_id	(range 1 to 3 foreign key to status_id in table: reservation_status)	
+field9: (INTEGER)room_number;
+
+table name:reservations_history
+field1:	(number)reservation_id (unique) (primary key copy from entries in current_reservations, not a foreign key!! because if ppl check out, entries from current_reservations will be deleted!)
+field2: (varchar2)customer_firstName  
+field3: (varchar2)customer_lastName
+field5: (INTEGER)room_type_id (foreign key to field type_id in table: room_types)
+field6: (date)check_in_date
+field7: (INTEGER)number_of_nights
+field8: (INTEGER)status_id    (range 4 to 5foreign key to status_id in table: reservation_status)
+field9: (INTEGER)room_number;
+
+
+table name:reservation_status
+field1: (integer)status_id (primary key)	(1:reserved, 2:checked in, 3: over stayed, 4: checked out, 5:expired)
+field2: (varchar2) status (reserved,checked in, over stayed, checked out, expired)
+
+
+table name: transaction_history
+field1: (number)transaction_id; (primary key)(math algorithm generate unique number)
+field2: (number)reservation_id; (unique) (copy from entries in current_reservations, not a foreign key!! because if ppl check out, entries from current_reservations will be deleted!)
+field5: (decimal)total_amount;
+field6: (varchar2)card_type; (visa, mastercard, american express)
+field7: (integer)four_digit_ending; 
+field8: (varchar2)name_on_card;
+field9: (time_stamp)time_stamp;
+
+
+  

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hotel Reservation Login Page</title>
+	</head>
+
+	<body>
+        <h1>Ryan's Hotel</h1>
+        <h3>User Login</h3>
+
+        
+        <form action="/hotel_reservation/UserLogin" method="post">
+            Email:<br>
+            <input type="text" name="Email" value="">
+            <br>
+            Password:<br>
+            <input type="text" name="Password" value="">
+            <br><br>
+            <input type="submit" value="Login">
+        </form> 
+        <form action="registration.html" method="post">
+                <input type="submit" value="Sign up" />
+        </form>
+
+        
+        <!--
+            <div id="caves"></div>
+        <script>
+            function loadRooms(){
+                console.log("been here");
+                let xhr=new XMLHttpRequest();	
+                xhr.onreadystatechange=function(){
+                    if (this. readyState==4){
+                        if(this.status==200){
+                            document.getElementById("caves").innerHTML=xhr.responseText;
+                        }else{
+                            console.log("error");
+                        }
+                    }
+                };
+                
+            xhr.open('POST', '/hotel_reservation/RoomsController');
+            xhr.send();
+        }
+        
+    </script>   
+    -->
+	</body>
+
+</html>

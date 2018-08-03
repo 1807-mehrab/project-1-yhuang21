@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Admin lobby</title>
+	</head>
+
+	<body>
+        <h1>Ryan's Hotel</h1>
+		<h3>Administrator Dashboard</h3>
+
+		<button type="button" onclick="loadRooms()">View All Rooms</button>
+        <div id="rooms"></div>
+        <button type="button" onclick="getAllUsers()">View All Guests</button>
+        <div id="guests"></div>
+        <button type="button" onclick="logoutSession()">Logout</button>
+        
+	</body>
+    <script src="servletRequests.js?forceUpdate"></script>
+</html>
